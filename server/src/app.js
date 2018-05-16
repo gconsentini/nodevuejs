@@ -59,12 +59,12 @@ app.put('/users/:id', (req, res) => {
   User.findById(req.params.id, 'name email password date_of_birth created_at updated_at', function (error, user) {
     if (error) { console.error(error); }
 
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.password = req.body.password;
-    user.date_of_birth = req.body.date_of_birth;
-    user.created_at = req.body.created_at;
-    user.updated_at = req.body.updated_at;
+    user.name = req.body.name
+    user.email = req.body.email
+    user.password = req.body.password
+    user.date_of_birth = req.body.date_of_birth
+    user.created_at = req.body.created_at
+    user.updated_at = req.body.updated_at
     user.save(function (error) {
       if (error) {
         console.log(error)
