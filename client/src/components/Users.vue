@@ -1,7 +1,7 @@
 <template>
   <div class="users">
     <h1>Users</h1>
-    <div v-if="posts.length > 0" class="table-wrap">
+    <div v-if="users.length > 0" class="table-wrap">
       <div>
         <router-link v-bind:to="{ name: 'adduser' }" class="">Add User</router-link>
       </div>
@@ -9,16 +9,14 @@
         <tr>
           <td>Name</td>
           <td>Email</td>
-          <td>Password</td>
           <td>Date of Birth</td>
           <td>Created at</td>
           <td>Updated at</td>
           <td width="100" align="center">Action</td>
         </tr>
-        <tr v-for='(user, index) in users' :key='index'>
+        <tr v-for="user in users">
           <td>{{ user.name }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.password }}</td>
           <td>{{ user.date_of_birth }}</td>
           <td>{{ user.created_at }}</td>
           <td>{{ user.updated_at }}</td>
@@ -30,7 +28,7 @@
       </table>
     </div>
     <div v-else>
-      There are no posts.. Lets add one now <br /><br />
+      There are no users.. Lets add one now <br /><br />
       <router-link v-bind:to="{ name: 'adduser' }" class="add_user_link">Add User</router-link>
     </div>
   </div>

@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import users from '@/components/Users'
+import Users from '@/components/Users'
 import adduser from '@/components/AddUser'
 import edituser from '@/components/EditUser'
-import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
@@ -12,16 +11,16 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'users',
-      component: users
+      name: 'Users',
+      component: Users
     },
     {
-      path: '/Users/add',
+      path: '/users/add',
       name: 'adduser',
       component: adduser
     },
     {
-      path: '/posts/:id/edit',
+      path: '/users/:id/edit',
       name: 'edituser',
       component: edituser
     }

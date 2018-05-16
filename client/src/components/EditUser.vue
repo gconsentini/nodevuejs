@@ -3,22 +3,23 @@
     <h1>Edit User</h1>
       <div class="form">
         <div>
+          <p>Name</p>
           <input type="text" name="name" placeholder="name" v-model="name">
         </div>
         <div>
-          <input type="text" name="email" placeholder="email" v-model="email">
+          <p>Email</p>
+          <input type="text" name="email" placeholder="Email" v-model="email">
         </div>
         <div>
-          <input type="text" name="password" placeholder="password" v-model="password">
+          <p>Password</p>
+          <input type="password" name="password" placeholder="Password" v-model="password">
         </div>
         <div>
-          <input type="text" name="date_of_birth" placeholder="date_of_birth" v-model="date_of_birth">
+          <p>Date of Birth</p>
+          <input type="date" name="date_of_birth" placeholder="Date of Birth" v-model="date_of_birth">
         </div>
         <div>
-          <input type="text" name="created_at" placeholder="created_at" v-model="created_at">
-        </div>
-        <div>
-          <input type="text" name="updated_at" placeholder="updated_at" v-model="updated_at">
+          <input type="hidden" name="created_at" placeholder="created_at" v-model="created_at">
         </div>
         <div>
           <button class="app_user_btn" @click="updateUser">Update</button>
@@ -57,6 +58,9 @@ export default {
       this.updated_at = response.data.updated_at
     },
     async updateUser () {
+      var dateTime = require('node-datetime');
+      var dt = dateTime.create();
+      var formatted = dt.format('d-m-Y H:M:S');
       await UsersService.updateUser({
         id: this.$route.params.id,
         name: this.name,
@@ -64,7 +68,7 @@ export default {
         password: this.password,
         date_of_birth: this.date_of_birth,
         created_at: this.created_at,
-        updated_at: this.updated_at
+        updated_at: formatted
       })
       this.$swal(
         'Great!',
