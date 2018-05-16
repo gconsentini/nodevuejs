@@ -3,7 +3,7 @@
     <h1>Users</h1>
     <div v-if="posts.length > 0" class="table-wrap">
       <div>
-        <router-link v-bind:to="{ name: 'NewUser' }" class="">Add User</router-link>
+        <router-link v-bind:to="{ name: 'adduser' }" class="">Add User</router-link>
       </div>
       <table>
         <tr>
@@ -16,14 +16,14 @@
           <td width="100" align="center">Action</td>
         </tr>
         <tr v-for='(user, index) in users' :key='index'>
-          <td>{{ post.name }}</td>
-          <td>{{ post.email }}</td>
-          <td>{{ post.password }}</td>
-          <td>{{ post.date_of_birth }}</td>
-          <td>{{ post.created_at }}</td>
-          <td>{{ post.updated_at }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.password }}</td>
+          <td>{{ user.date_of_birth }}</td>
+          <td>{{ user.created_at }}</td>
+          <td>{{ user.updated_at }}</td>
           <td align="center">
-            <router-link v-bind:to="{ name: 'EditUser', params: { id: user._id } }">Edit</router-link> |
+            <router-link v-bind:to="{ name: 'edituser', params: { id: user._id } }">Edit</router-link> |
             <a href="#" @click="deleteUser(user._id)">Delete</a>
           </td>
         </tr>
@@ -31,7 +31,7 @@
     </div>
     <div v-else>
       There are no posts.. Lets add one now <br /><br />
-      <router-link v-bind:to="{ name: 'NewUser' }" class="add_user_link">Add User</router-link>
+      <router-link v-bind:to="{ name: 'adduser' }" class="add_user_link">Add User</router-link>
     </div>
   </div>
 </template>
@@ -54,8 +54,21 @@ export default {
       this.users = response.data.users
     },
     async deleteUser (id) {
-      await UsersService.deleteUser(id)
-      this.$router.push({ name: 'Users' })
+      const $this = this
+      $this.$swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function () {
+        UsersService.deleteUser(id)
+        $this.$router.go({
+          path: '/'
+        })
+      })
     }
   }
 }
@@ -86,7 +99,7 @@ a {
   color: #4d7ef7;
   text-decoration: none;
 }
-a.add_post_link {
+a.add_user_link {
   background: #4d7ef7;
   color: #fff;
   padding: 10px 80px;

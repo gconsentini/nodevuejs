@@ -7,7 +7,7 @@ export default {
   },
 
   addUser (params) {
-    return Api().post('users', params)
+    return Api().post('add_user', params)
   },
 
   updateUser (params) {

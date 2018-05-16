@@ -3,22 +3,22 @@
     <h1>Add User</h1>
       <div class="form">
         <div>
-          <input type="text" name="name" placeholder="Name" v-model="name">
+          <input type="text" name="name" placeholder="name" v-model="name">
         </div>
         <div>
-          <input type="text" name="email" placeholder="Email" v-model="email">
+          <input type="text" name="email" placeholder="email" v-model="email">
         </div>
         <div>
-          <input type="text" name="password" placeholder="Password" v-model="password">
+          <input type="text" name="password" placeholder="password" v-model="password">
         </div>
         <div>
-          <input type="text" name="date_of_birth" placeholder="Date of Birth" v-model="date_of_birth">
+          <input type="text" name="date_of_birth" placeholder="date_of_birth" v-model="date_of_birth">
         </div>
         <div>
-          <input type="text" name="created_at" placeholder="Created at" v-model="created_at">
+          <input type="text" name="created_at" placeholder="created_at" v-model="created_at">
         </div>
         <div>
-          <input type="text" name="updated_at" placeholder="Updated at" v-model="updated_at">
+          <input type="text" name="updated_at" placeholder="updated_at" v-model="updated_at">
         </div>
         <div>
           <button class="app_user_btn" @click="addUser">Add</button>
@@ -30,7 +30,7 @@
 <script>
 import UsersService from '@/services/UsersService'
 export default {
-  name: 'NewUser',
+  name: 'adduser',
   data () {
     return {
       name: '',
@@ -51,6 +51,11 @@ export default {
         created_at: this.created_at,
         updated_at: this.updated_at
       })
+      this.$swal(
+        'Great!',
+        `Your user has been added!`,
+        'success'
+      )
       this.$router.push({ name: 'Users' })
     }
   }

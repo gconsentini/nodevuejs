@@ -2,23 +2,29 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
-var User = require("../models/user");
 
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/users');
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error"));
-db.once("open", function(callback){
-  console.log("Connection Succeeded");
-});
+const mongodb_conn_module = require('./mongodbConnModule');
+var db = mongodb_conn_module.connect();
 
-// Add new post
-app.post('/user', (req, res) => {
+var User = require("../models/user");
+
+// Fetch all users
+app.get('/users', (req, res) => {
+  User.find({}, 'name email password date_of_birth created_at updated_at', function (error, users) {
+    if (error) { console.error(error); }
+    res.send({
+      users: users
+    })
+  }).sort({_id:-1})
+})
+
+// Add new user
+app.post('/add_user', (req, res) => {
   var db = req.db;
   var name = req.body.name;
   var email = req.body.email;
@@ -47,37 +53,18 @@ app.post('/user', (req, res) => {
   })
 })
 
-// Fetch all users
-app.get('/users', (req, res) => {
-  User.find({}, 'name email password date_of_birth created_at updated_at', function (error, users) {
-    if (error) { console.error(error); }
-    res.send({
-      users: users
-    })
-  }).sort({_id:-1})
-})
-
-// Fetch single user
-app.get('/user/:id', (req, res) => {
-  var db = req.db;
-  User.findById(req.params.id, 'name email password date_of_birth created_at updated_at', function (error, user) {
-    if (error) { console.error(error); }
-    res.send(user)
-  })
-})
-
 // Update a user
 app.put('/users/:id', (req, res) => {
   var db = req.db;
   User.findById(req.params.id, 'name email password date_of_birth created_at updated_at', function (error, user) {
     if (error) { console.error(error); }
 
-    user.name = req.body.name
-    user.email = req.body.email
-    user.password = req.body.password
-    user.date_of_birth = req.body.date_of_birth
-    user.created_at = req.body.created_at
-    user.updated_at = req.body.updated_at
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.password = req.body.password;
+    user.date_of_birth = req.body.date_of_birth;
+    user.created_at = req.body.created_at;
+    user.updated_at = req.body.updated_at;
     user.save(function (error) {
       if (error) {
         console.log(error)
@@ -100,6 +87,15 @@ app.delete('/users/:id', (req, res) => {
     res.send({
       success: true
     })
+  })
+})
+
+// Fetch single user
+app.get('/user/:id', (req, res) => {
+  var db = req.db;
+  User.findById(req.params.id, 'name email password date_of_birth created_at updated_at', function (error, user) {
+    if (error) { console.error(error); }
+    res.send(user)
   })
 })
 

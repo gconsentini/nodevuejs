@@ -3,7 +3,7 @@
     <h1>Edit User</h1>
       <div class="form">
         <div>
-          <input type="text" name="name" placeholder="Name" v-model="name">
+          <input type="text" name="name" placeholder="name" v-model="name">
         </div>
         <div>
           <input type="text" name="email" placeholder="email" v-model="email">
@@ -30,7 +30,7 @@
 <script>
 import UsersService from '@/services/UsersService'
 export default {
-  name: 'EditUser',
+  name: 'edituser',
   data () {
     return {
       name: '',
@@ -66,6 +66,11 @@ export default {
         created_at: this.created_at,
         updated_at: this.updated_at
       })
+      this.$swal(
+        'Great!',
+        `Your user has been updated!`,
+        'success'
+      )
       this.$router.push({ name: 'Users' })
     }
   }
