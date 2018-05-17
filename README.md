@@ -11,7 +11,7 @@ In this example we are using a User model with name, email, password, date of bi
     - [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
     - [Linux - Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
 
-Make sure that MongoDB is running under localhost(127.0.0.1) and has the port 27017 open
+Make sure that MongoDB is running under localhost(127.0.0.1) and has the port 27017 available.
 
 ## Setup for Development
 1. Clone the repo using https `git clone https://github.com/gconsentini/nodevuejs.git`
