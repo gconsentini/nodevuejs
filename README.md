@@ -1,7 +1,7 @@
 # nodevuejs
 This is a simple CRUD application running under **NodeJS**  **VueJS**  **ExpressJS** and using  **MongoDB** to store data.
 
-In this example we are using a User model with name, email, password, date of birth, when was created and when was updated attributes.
+In this example we are using a User model with name, email, password, date of birth, when was created and when was updated as the attributes.
 
 ## Requirements
 
