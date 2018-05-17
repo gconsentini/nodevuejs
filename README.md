@@ -5,6 +5,7 @@ In this example we are using a User model with name, email, password, date of bi
 
 ## Requirements
 
+- git installed
 - Node.js / NVM installed (https://github.com/creationix/nvm)
 - MongoDB installed
     - [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
@@ -32,3 +33,6 @@ npm start
 ```
 
 5. Open `http://localhost:8080` in browser
+
+> One thing was noticed when you open the client with Firefox, after deleting a user the page does not refresh itself to update the users, so if you're using Firefox note that you should refresh the page **F5**.
+> With Google Chrome no problem was encountered
