@@ -5,9 +5,8 @@ In this example we are using a User model with name, email, password, date of bi
 
 ## Requirements
 
-1. Node.js / NVM installed (https://github.com/creationix/nvm)
-
-2. MongoDB installed
+* Node.js / NVM installed (https://github.com/creationix/nvm)
+* MongoDB installed
 
 [Windows](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 [Linux - Ubuntu](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
