@@ -13,7 +13,7 @@ In this example we are using a User model with name, email, password, date of bi
 
 Make sure that MongoDB is running under localhost(127.0.0.1) and has the port 27017 open
 
-## Setup Development Machine
+## Setup for Development
 1. Clone the repo using https `git clone https://github.com/gconsentini/nodevuejs.git`
 
 2. `cd nodevuejs`
@@ -35,4 +35,5 @@ npm start
 5. Open `http://localhost:8080` in browser
 
 > One thing was noticed when you open the client with Firefox, after deleting a user the page does not refresh itself to update the users, so if you're using Firefox note that you should refresh the page **F5**.
-> With Google Chrome no problem was encountered
+
+> With Google Chrome no problem was encountered.
